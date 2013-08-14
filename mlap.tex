@@ -1,0 +1,916 @@
+
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[conference]{IEEEtran}
+% Add the compsoc option for Computer Society conferences.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+\usepackage{comment}
+\usepackage{listings}
+\usepackage{color}
+\lstset{basicstyle=\footnotesize, columns=fullflexible}
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  \graphicspath{{./}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.pdf}
+  %,.jpeg,.png
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{De novo likelihood-based measures for comparing metagenomic assemblies}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+%\author{\IEEEauthorblockN{Christopher M. Hill \\ Irina Astrovskaya \\and Mihai Pop}
+%\IEEEauthorblockA{Center for Bioinformatics\\and Computational Biology\\University of Maryland\\College %Park, Maryland, USA\\
+%Email: {cmhill,irina,mpop}@umd.edu}
+%\and
+%\IEEEauthorblockN{Howard Huang}
+%\IEEEauthorblockA{Department of Biomedical Engineering\\Johns Hopkins University
+%Baltimore, Maryland, USA\\
+%Email: hhuang58@jhu.edu}
+%\and
+%\IEEEauthorblockN{Atif Memon}
+%\IEEEauthorblockA{Department of Computer Science\\University of Maryland\\College Park, MD 20742, USA\\
+%Email: atif@cs.umd.edu}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+\author{\IEEEauthorblockN{Christopher M. Hill\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
+Irina Astrovskaya\IEEEauthorrefmark{1},
+Howard Huang\IEEEauthorrefmark{3}, 
+Sergey Koren\IEEEauthorrefmark{4},
+Todd Treangen\IEEEauthorrefmark{4}, \\
+Atif Memon\IEEEauthorrefmark{2} and
+Mihai Pop\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Center for Bioinformatics and Computational Biology, University of Maryland, College Park, Maryland, USA \\ Email: \{cmhill,irina,mpop\}@umd.edu}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Department of Computer Science, University of Maryland, College Park, MD 20742, USA\\Email: atif@cs.umd.edu}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}Department of Biomedical Engineering, Johns Hopkins University,Baltimore, Maryland, USA \\ Email: hhuang58@jhu.edu}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}National Biodefense Analysis and Countermeasures Center, Battelle National Biodefense Institute, Frederick, Maryland, USA \\ Email: \{sergek,treangen\}@umd.edu}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+%\boldmath
+The ever-decreasing costs of sequencing technology has led to a sharp increase in metagenomics projects over the past decade, allowing us to better understand the diversity and function of microbial communities found in the world around us.
+Metagenomic assemblers inherit all the difficulties of traditional single genome assembly, but with the additional complexity of trying to resolve assemblies of closely related species with drastically varying abundances.
+Despite decades of research, assessing and comparing assembly quality still relies on the availability of independently determined standards, such as manually curated genome sequences.
+These standards are often not possible in metagenomic projects, where a large number of novel organisms and strains are discovered, thus we must rely on \emph{de novo} methods for assessing and comparing assembly qualities.
+Here we describe an extension to our \emph{de novo} LAP framework to evaluate metagenomic assemblies.
+We will show that by modifying our likelihood calculation to take into account abundances, we can accurately and efficiently evaluate metagenomic assemblies.
+%We evaluate our extended framework on results generated from the Human Microbiome Project (HMP) and 
+We find that our extended LAP framework is able to reproduce results generated from the Human Microbiome Project (HMP) that closely match the reference-based evaluation metrics used in the study and outperforms other \emph{de novo} metrics traditionally used to measure assembly quality.
+Finally, we have integrated our LAP framework into the metagenomic assembly pipeline MetAMOS, allowing any user to reproduce reference-based quality evaluations of metagenomic assemblies with relative ease.
+%Even without knowledge of the true reference sequences, our \emph{de novo} metric 
+%Here we introduce an extension to our LAP  \emph{de novo} probabilistic measure of assembly quality, which allows for an objective comparison of multiple assemblies generated from the same set of reads.
+%We define the quality of a sequence produced by an assembler, as the conditional probability of observing the sequenced reads from the assembled sequence.
+
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the conference you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals/conferences frown on
+% math in the abstract anyway.
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+The genome sequence of an organism is a vital resource for biologists trying to better understand its function and evolution.
+Generating this sequence is not an easy task as modern sequencing technologies can only ``read'' small pieces of the genome.
+These sequences, known as \emph{reads}, have to be pieced together by tools called assemblers using a collection of different heuristics since in all but the simplest cases, assemblers cannot fully and accurately reconstruct the genome~\cite{myers1995,medvedev2007computability}.
+
+Practical implementations of assembly algorithms (such as ABySS~\cite{ABySS}, SOAPdenovo~\cite{SOAPdenovo}, Velvet~\cite{Velvet}, etc.) return just an approximation solution that is often fragmented and contains numerous errors.
+Ideally, further experiments would be performed manually to correct the hundreds to thousands of errors~\cite{salzberg2005misassemblies}, and fill in the gaps between the chunks of assembled sequences (called contigs)~\cite{nagarajan2010finishing}.
+However, the additional cost and effort necessary to finish a genome is only justifiable for a few high-priority organisms (typically model organisms).
+Thus, the majority of genomes sequences available today are considered to be in a ``draft'' state, with no clear indication of their respective quality, possibly impacting the conclusions and experiments done on their sequences.
+
+Despite the unresolved challenges of single genome assembly, the ever-decreasing costs of sequencing technology has led to a sharp increase in metagenomics projects over the past decade.
+% have been sharply on the rise over the past decade,
+These projects allow us to better understand the diversity and function of microbial communities found in the environment, including the ocean\cite{rusch2007sorcerer,wu2011stalking,yooseph2007sorcerer}, Arctic regions \cite{varin2012metagenomic}, other living organisms\cite{he2013comparative} and the human body\cite{gill2006metagenomic,peterson2009nih}.
+
+Traditional \emph{de novo} genome assemblers have trouble assembling metagenomic datasets due to the presence of closely related species and distinguishing between true polymorphisms and errors arising from the sequencing technology.
+Metagenomic assemblers (such as MetAMOS\cite{treangen2013metamos}, Meta-IDBA \cite{peng2011meta}, and MetaVelvet\cite{namiki2012metavelvet}) use heuristics (based on sequencing coverage) to split the assembly graph into subcomponents that represent different organisms, then perform traditional assembly algorithms on the individual organisms.
+
+With the rapidly increasing collection of genome assemblers, it is of critical importance for researchers to assess the quality of sequence from an assembler.
+Despite the incremental improvements in performance, none of the assembler tools available today outperforms the rest in all cases (as highlighted by recent assembly
+bake-offs GAGE\cite{salzberg2011gage} and Assemblathons 1~\cite{earl2011assemblathon} and 2~\cite{bradnam2013assemblathon}).
+Different assemblers ``win'' depending on the specific downstream analyses, structure of the genome, and sequencing technology used.
+These competitions highlight the inherent difficulty of assessing assembly quality -- where do you set the line between increased contiguity and decreasing accuracy of the resulting sequence?
+Evaluating the trade-off between increased contiguity and errors is difficult even when there is a gold standard reference genome to compare to, which is not available in most practical assembly cases.
+Thus, we are forced to heavily rely on \emph{de novo} approaches based on sequence data alone ( including global ``sanity checks,'' such as gene density, which is expected to be high in bacterial genomes).
+
+One objective \emph{de novo} metric that has been used to evaluate and compare assembly quality is based on the likelihood that the observed reads are generated from the given assembly, which can be accurately estimated by modeling the sequencing process.
+In the pioneering work of Gene Myers in the 1990's, Myers suggested that the correct assembly given the set of reads must be consistent with the data generation process.
+This idea was extended and used by assemblers and assembly evaluation software: the arrival-rate statistic (A-statistic) in Celera
+assembler~\cite{CeleraAssembler} to identify collapsed repeats, and
+as an objective function in quasi-species (ShoRAH~\cite{SHORAH},
+ViSpA~\cite{VISPA}), metagenomic (Genovo~\cite{genovo2011}),
+general-purpose assemblers~\cite{medvedev2009maximum}, and recent assembly
+evaluation frameworks (ALE ~\cite{clark2013ale}, CGAL~\cite{rahman2013cgal}, LAP~\cite{LAP}).
+
+Most the previous \emph{de novo} and reference-based validation methods have been designed for single genome assembly.
+Unlike 
+Currently, there are no clear reference-based metrics for evaluating metagenomic assemblies.
+In addition to chimeric contigs within a single organism, there are now potential chimerias that span multiple organisms.
+Furthermore, it is not clear how weigh errors occuring in more abundant organisms.
+Likelihood frameworks ALE ~\cite{clark2013ale}, CGAL~\cite{rahman2013cgal}, and LAP~\cite{LAP} rely on the assumption that the sequencing process is approximately uniform across the genome; however, the sequencing depth across genomes in metagenomic samples can vary greatly~\cite{carrigg2007dna,krsek1999comparison,morgan2010metagenomic,temperton2009bias,darling2004mauve}.
+
+%Assessing the quality of the sequence output by an assembler is of critical importance for downstream analyses and allows researchers to choose from a collection of genome assembler.
+
+In our paper, we describe an extension to our LAP framework to evaluate metagenomic assemblies.
+We will show that by modifying our likelihood calculation to take into account contig abundances, we can to accurately and efficiently evaluate metagenomic assemblies.
+We evaluate our extended framework on results from the Human Microbiome Project (HMP).
+The software implementing our approach is made available, open-source and free of charge, at: \url{http://assembly-eval.sourceforge.net/} and with the MetAMOS package: \url{https://github.com/treangen/MetAMOS}.
+
+\hfill mds
+ 
+\hfill July 17, 2013
+
+\section{Methods}
+\subsection{Likelihood of an assembly}
+
+We measure the quality of an assembly as the probability that the observed reads, $R$, are generated from the given assembly, $A$: $\Pr[R|A]]$ \cite{LAP}.
+Assuming that the event of observing each read is independent, then the probability $\Pr[R|A]$ of the read set $R$ being produced from the assembly $A$, is the product of the individual read probabilities, $p_r$.  That is,
+\begin{equation}
+  \label{probability_reads_given_assembly}
+  \Pr[R \vert A]=\prod_{r \in R} p_r
+\end{equation}
+
+By modeling the data generation process, we can calculate the probability of each read, $p_r$.
+Assuming uniform coverage, where each position in the genome is covered by roughly the same amount of reads as any other position, a read may be sequenced starting from any position of the genome with equal probability.
+In the basic error-free model, if a read matches to one position in the assembly, and its reverse-complement does not match anywhere, then the probability of the read being produced from the assembly is $p_r=\frac{1}{2L}$, where $L$ is the length of the assembly.
+The length of the assembly is doubled due to the double-stranded molecules of DNA that make up the genome.
+Thus, if a read 
+%and its reverse-complement 
+matches at $n_r$ positions on the assembly, then
+% and its reverse-complement
+\begin{equation}
+  \label{error_free_probability}
+  p_r = \frac{n_r}{2L}
+\end{equation}
+
+Ghodsi et al. details how to modify the calculation of $p_r$ to handle practical constraints, e.g., sequencing errors and mate pairs (reads that are experimentally known to be separated by a given length).
+It is important to note that the true genome maximizes $\Pr[R|A]$ (see \cite{LAP} for more details).
+
+%The metric used in accessing the assembly probability is the logarithm of the geometric mean of the read probabilities, referred to as the log average probability (LAP).
+Calculating $\Pr[R|A]$ can be expensive for dataset sizes commonly encountered in sequencing projects (tens to hundreds of millions of reads).
+Thus, we can approxmiate the likelihood of the assembly by using a random subset of the reads.
+To counteract the effect of sample size on the probability, we define the assembly quality as the geometric mean of the read probabilities:
+
+\begin{align}
+\label{average_log_probability}
+  \operatorname{AP}(R^\prime) = 
+  \left(\prod_{r \in R^\prime} p_r\right)^{\frac{1}{\left|R^\prime\right|}} \nonumber  \\
+  \operatorname{LAP}(R^\prime) = \log_{10} \left( \operatorname{AP}(R^\prime) \right) = \frac{\sum_{r \in R^\prime} \log_{10} p_r}{\left|R^\prime\right|}
+\end{align}
+
+%For the remainder of this paper, we define the assembly quality as the average log likelihood (LAP) of the reads given the assembly.
+%This formulation allows us to estimate the 
+The mean of the read probabilities over the sample is expected to be equal to the mean over all reads, but if the sample size is too small, then the accuracy of the estimation will be poor.
+
+\subsection{Extending LAP to metagenomic assemblies}
+An important simplifying assumption of our framework is that the sequencing process is uniform in coverage.
+In metagenomics, however, the relative abundances of organisms are rarely uniform (CITATION).
+Metagenomic pipelines use assemblers that produce FASTA files with a single entry per contig despite its abundance or coverage.
+This feature makes using the LAP out of the box incorrect.
+Later steps in the pipelines often deal with abundance estimation and phylogenetic classification.
+
+It is important to note while the abundances of each organism may vary dramatically, the sequencing process still produces a uniform coverage of the complete environment.
+In other words, consider the case where we have three bacteria in an environment (1 of strain \emph{A}, 2 of strain \emph{B}).
+Now, lets assume we perform enough sequencing to produce a 1x coverage of each individual bacterium.
+An assembler would only output both bacteria strains, despite the difference in coverage.
+
+We view the collection of individual genomes and their relative abundances as a single \emph{metagenome} where each genome is duplicated based on their abundance (SEE FIGURE).
+Thus, we now assume we have uniform coverage across the entire metagenome.
+This problem is similar to determining the optimal repeat count in single genome assembly, where a repetitive element can now include a genome.
+Our LAP score is maximized by the correct copy number.
+
+In order to calculate the LAP of a metagenomic assembly, in addition to the actual assemblies, we need the relative abundances.
+In the error-free model, we compute the probability of a read, $p_r$, given the assembled sequence and relative abundance as:
+
+\begin{equation}
+  \label{meta_read_probability}
+  p_r = \frac{\sum_{c \in \text{Contigs}}\text{abun}(c)*n_{rc}}{2\hat{L}}
+\end{equation}
+
+\begin{equation}
+  \label{meta_read_length}
+  \hat{L} = \sum_{c \in \text{Contigs}}\text{abun}(c)*L_{c}
+\end{equation}
+
+where $n_{rc}$ is the number of times read $r$ occurs in contig $c$ and $\hat{L}$ is the adjusted total assembly length.  In the case where the abundance of each contig is 1, calculating $p_r$ is identical to the original LAP (single genome) formulation.  A similar modification can be done to account for sequencing errors outlined in \cite{LAP}.
+
+Ghodsi et al. has shown we can approximate the probabilities using fast and memory efficient search alignment programs when it is impractical to calculate the exact probabilities for large read sets.
+We can apply the metagenomics modification above to the alignment tool-based method:
+
+\begin{equation}
+\label{}
+p_{r} = \frac{\sum_{j \in S_r} \text{abun}(j_{\text{contig}})*p_{r,j_{\text{subs}}}}{2\hat{L}}
+\end{equation}
+where $S_r$ is the set of alignments in the SAM file for the read $r$ and the probability of alignment, $p_{r,j_{\text{subs}}}$, is approximated by $\epsilon^{subs}(1 - \epsilon)^{l - subs}$.
+
+In order to accurately evaluate the metagenomic assemblies using our LAP framework, the abundance of each contig is needed.
+However, commonly used metagenomic abundance tools are often targeted at taxonomic classification~\cite{segata2012metagenomic,brady2009phymm,liu2010metaphyler,huson2007megan}.
+One strategy to estimate contig abundances is to first perform taxonomic classification on the reads using the above tools and then align the contigs with the taxonomic database, transitively applying the taxonomic abundances to the contigs.
+In lieu of taxonomic abundances, our LAP framework uses the average per basepair coverage of assembled contigs provided by MetAMOS.
+%We use modified version of Sailfish\cite{sailfish}, a tool to quickly calculate transcript abundances using RNA-seq data, to estimate contig abundances.
+%One of the underlying assumptions of Sailfish is that the coverage
+
+The software implementing our approach is made available, open-source and free of charge, at: \url{http://assembly-eval.sourceforge.net/} and with the MetAMOS package: \url{https://github.com/treangen/MetAMOS}.
+
+\section{Results}
+\subsection{Likelihood score maximized using correct abundances}
+A key property of our framework is that the correct abundances maximizes our LAP score.
+To illustrate this property, we simulated two metagenomic communities and calculated the LAP of the reference genomes with a combination of abundances.
+The first simulated community consisted of \emph{Bacillus cereus} and \emph{Acinetobacter baumannii} at a ratio of 1:4.
+We generated 200 bp reads at 20x coverage of the metagenome (20x of \emph{B. cereus} and 80x of \emph{A baumannii}).
+We calculated the LAP score using all combinations of abundances from 1 to 8.
+
+The second simulated community consisted of \emph{Bacillus cereus} and \emph{Actinomyces odontolyticus} at a ratio of 4:7.
+We generated 200 bp reads at 20x coverage of the metagenome (80x of \emph{B. cereus} and 140x of \emph{A odontolyticus}).
+We calculated the LAP score using all combinations of abundances from 1 to 13.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{ref_abun_1}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{LAP scores for simulated B. cereus (1x) and A. baumannii (4x) mixture.}
+\label{fig:ref_abun}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{ref_abun_2}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{LAP scores for simulated B. cereus (4x, 5.2MB) and A. odontolyticus (7x, 2.4MB)}
+\label{fig:ref_abun_2}
+\end{figure}
+
+
+As seen in Figures \ref{fig:ref_abun} and \ref{fig:ref_abun_2}, the correct ratio of abundances yields the highest LAP score in both communities.
+The closer the LAP scores to the correct abundance ratio, the higher the LAP scores.
+
+\subsection{Impact of errors on synthetic metagenomes}
+
+When organism abundances are uniform, the weight of an assembly error is also uniform.
+On the other hand, in metagenomic assemblies, the relative organism abundances can often vary by orders of magnitudes.
+Thus, errors in the highly abundant organisms should have more of an impact on the LAP score than errors in organism of lower abundance.
+To illustrate this, we simulated a small metagenomic community consisting of \emph{Escherichia coli} and \emph{Bacillus cereus} and a 5:1 ratio.
+We introduced an increasing number of common assembly errors (single-base substitutions, insertions, and deletions) into the two organisms assemblies and observed the resulting LAP score.
+
+As shown in Figure \ref{fig:errors}, the higher the number of synthetic errors, the lower the LAP score.
+Insertions/deletions were more deleterious to the LAP score than substitutions, since in addition to causing a mismatch, an insertion/deletion changes the overall genome size.
+As expected, errors introduced into the more abundant organism, \emph{E. coli}, had a greater affect on the LAP score than those inserted into \emph{Bacillus cereus}.
+Our LAP score was able to accurately weigh the errors by the abundance of the contig.
+
+\begin{figure}[tb!]
+\centering
+\includegraphics[width=3in]{errors}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Synthetic errors in simulated E. coli (5x, 4.9Mbp) B. cereus (1x, 5.2Mbp) community.}
+\label{fig:errors}
+\end{figure}
+
+\begin{comment}
+\begin{table}[h]
+\caption{LAP assembly}
+\label{tab:lap_assembly}
+\centering
+\begin{tabular}{{c}{c}{c}}
+\hline
+\bfseries Assembly & \bfseries LAP score & \bfseries N50 (kbp)\\
+\hline\hline
+Reference (true abundances) & -11.327 & 3,977 \\
+Reference (no abundances)   & -11.450 & 3,977 \\
+Newbler                     & -11.387 & 314\\
+\end{tabular}
+\end{table}
+\end{comment}
+
+\subsection{Likelihood scores correlate with reference-based metrics}
+%c|c|c|c|c|c
+\begin{table*}[tb!]
+\renewcommand{\arraystretch}{1.3}
+\caption{Comparison of assembly statistics for HMP mock Even and mock Staggered datasets.}
+\label{table_example}
+\centering
+\begin{tabular}{{l}{l}{c}{c}{c}{c}{c}{c}{c}{c}{c}{c}}
+\hline
+\bfseries Dataset & \bfseries Assembler & \bfseries LAP & \bfseries \#ctgs &  \bfseries Good ctgs & \bfseries Total aln & \bfseries Slt & \bfseries Hvy & \bfseries Ch & \bfseries Size @ 10 Mbp &\bfseries Max ctg size & \bfseries Err per Mbp \\
+\hline\hline
+
+mockE & SOAPdenovo & \textbf{-27.031} & 63107 & \textbf{99.3\%} & \textbf{51} & \textbf{166} & 131          & \textbf{1} & 28208          & 249819          & \textbf{5.8}  \\
+mockE & Velvet     & -28.537          & 12830 & 96.2\%          & 41          & 256          & \textbf{100} & 2          & 42269          & 179673          & 8.7          \\
+mockE & MetaVelvet & -27.102          & 22772 & 96.8\%          & 49          & 462          & 156          & 4          & \textbf{62138} & \textbf{367458} & 12.7          \\
+mockE & Meta-IDBA  & -31.166          & 22032 & 95.4\%          & 47          & 362          & 151          & 3          & 26141          & 249069          & 11 \\ \\
+mockS & SOAPdenovo & -60.161          & 44928 & \textbf{98.8\%} & \textbf{28} & 135          & 98           & \textbf{0} & 5672           & 186064          & \textbf{8.3}  \\
+mockS & Velvet     & -60.711          & 21050 & 95.8\%          & \textbf{28} & 485          & 115          & 1          & 6060           & 119120          & 21.5          \\
+mockS & MetaVelvet & -60.442          & 20551 & 95.3\%          & \textbf{28} & 517          & 143          & 3          & 6685           & \textbf{217330} & 20.1          \\
+mockS & Meta-IDBA  & \textbf{-58.851} & 4559  & 92.5\%          & 18          & \textbf{101} & \textbf{83}  & \textbf{0} & \textbf{13150} & 119604          & 10.2  \\
+
+\hline
+\end{tabular}
+\label{tab:hmp}
+\end{table*}
+
+With real metagenomic samples, it is difficult to make evaluations given the lack of high quality references.
+Using purely simulated data has the issue of not accurately capturing the error and bias introduced by sequencing technology.
+Thus, to evaluate our LAP score, we use two `mock' communities (Even and Staggered) provided by the Human Microbiome Project (HMP) consortium\cite{mitreva2012structure,methe2012framework}.
+These communities were created using specific DNA sequences from organisms with known reference genomes (consisting of over 50 bacterial genomes and a few eukaryotes) and abundances.
+The mock Even community consisted of 100,000 16S copies per organism per aliquot, while the mock Staggered community consisted of 1,000 to 1,000,000 16S copies per organism per aliquot.
+Data used from the HMP mock communities are available at \url{http://www.ncbi.nlm.nih.gov/bioproject/48475}.
+We calculated the LAP score on assemblies produced by MetAMOS~\cite{treangen2013metamos}: SOAPdenovo~\cite{SOAPdenovo}, Metavelvet~\cite{namiki2012metavelvet}, Velvet~\cite{Velvet}, and Meta-IDBA~\cite{peng2011meta}.
+
+Generally, the \emph{de novo} LAP scores agree with the referenced-based contiguity values (Table \ref{tab:hmp}).
+In the mock Even dataset, SOAPdenovo has the greatest LAP score, the highest fraction of contigs that can align to the reference without error, total amount of sequence that can be aligned to a reference genome, while also having the lowest amount of misassemblies (including chimeric) and errors per Mbp.
+It is important to note that if user selected an assembly based on the best contiguity at 10 Mbp (largest contig c such that the sum of all contigs larger than c is more than 10 Mbp, similar to the commonly used \emph{de novo} metric N50 size), they would select the MetaVelvet assembly.
+The MetaVelvet assembly contains more than double the error rate per Mbps as the SOAPdenovo assembly while aligning nearly 2 Mbp to references.
+
+Since the abundances of each organism in the mock Even dataset are fairly similar, the mock Staggered abundance distribution creates a more realistic scenario encountered in metagenomic environments.
+Here, the Meta-IDBA assembly has the greatest LAP score, but aligns roughly a third less sequences to the reference genomes than SOAPdenovo.
+The Meta-IDBA assembly contains approximately a tenth of the amount of contigs (4,559 vs. 44,928) as SOAPdenovo.
+
+
+%These datasets have the advantage over simulated data because it captures the error and bias introduced from the sequence technology.
+
+\subsection{A useful application: tuning assembly parameters for MetAMOS}
+Assemblathon1~\cite{earl2011assemblathon} has shown that so-called assembly experts can often get drastically different assemblies using the same assemblers, highlighting the difficulty of choosing the \emph{right} parameters for a given assembler.
+The software implementing our metagenomic LAP approach comes packaged with the MetAMOS pipeline.
+This allows users the option to run MetAMOS with different assemblers and have our framework select the assembly with the highest LAP score automatically without any prior knowledge from the user.
+Users specify the desired assembler using the \verb!-a! parameter of \verb!runPipeline!.
+Now users can specify multiple assemblers (comma-separated) after the \verb!-a! parameter, and \verb!runPipeline! will run all assemblers and select the assembly yielding the highest LAP score for used in downstream analyses.
+
+We showcase the ease of use of the automated assembler selection within MetAMOS using the \emph{Carsonella ruddii} dataset packaged with MetAMOS (Table ~\ref{tab:metamos_lap}).
+
+
+\begin{comment}
+\begingroup
+    \fontsize{6pt}{8pt}\selectfont
+    \begin{verbatim}  
+./initPipeline -l flx -f -m carsonella_pe_filt.fna -d multi_asm_test -i 3000:4000
+./runPipeline -c fcp -a newbler,soap,velvet,metavelvet -d multi_asm_test -k 31
+    \end{verbatim}  
+\endgroup
+\end{comment}
+
+\begin{table}[h]
+\caption{Self-tuning MetAMOS.}
+\label{tab:metamos_lap}
+\centering
+\begin{tabular}{{l}{c}{c}{c}{c}}
+\hline
+
+\bfseries Assembler & \bfseries Contigs & \bfseries LAP & \bfseries N50 (kbp) & \bfseries  Errors \\
+\hline \hline
+newbler  & \bf{1} & \bf{-13.064} & \bf{156} & 4 \\
+SOAPdenovo & 23 & -14.238 & 9 & \bf{3} \\
+Velvet & 3 & -13.157 & 92 & \bf{3} \\
+MetaVelvet & 3 & -13.157 & 92 & \bf{3} \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section{Discussion}
+
+In this paper, we have proposed an extension to our LAP framework to perform \emph{de novo} comparisons of metagenomic assemblies.
+Unlike traditional measure of assembly quality (such as the N50), our reference-independent LAP scores correlates well reference-based measures of assembly quality (REMOVE).
+
+Our metagenomic LAP extension relies heavily on the idea that the sequencing process of the metagenome is roughly uniform (both in coverage and error profile), and that the reads are independently sampled from the genome.
+Biases exist in all steps of the sequencing process, from the extraction of DNA from organisms with different cell membranes/walls~\cite{carrigg2007dna,krsek1999comparison} to the sequencing protocol used~\cite{morgan2010metagenomic,temperton2009bias,darling2004mauve}.
+
+%We have made a number of simplifying assumptions about the sequencing process throughout our paper.
+Currently, there is a lack of quality reference-based metrics when evaluating metagenomic assemblies.
+Misjoins betweens organisms may be more deleterious than misjoins within a genome.
+Furthermore, current reference-based metrics do not take into account the relative abundances of the organisms when evaluating metagenomic assemblies.
+The metrics provided by MetAMOS do not factor in the contig abundances when examining assembly errors.
+This made it difficult to compare our LAP score to the reference-based metrics because intuitively, an error in a highly abundant organism should be \emph{worse} than an error in a rare, low coverage organism.
+Our LAP score implicitly weighs the errors in abundant contigs more than those in lesser abundant contigs.
+It is important to note that we have focused on the complete reconstruction of the metagenome, a very specific use case.
+Assembly algorithms are designed with specific biological applications in mind, such as, the conservative reconstruction of the genic regions.
+Studies focusing on the genic regions may tolerate large-scale rearrangements as long as the genic regions were correctly assembled.
+Conversely, other studies may want to focus on the reconstruction and detection of rare pathogenic bacteria in an environment.
+These application specific assembly algorithms all attempt to optimize their formulation of the assembly problem.
+
+%De novo metric, more misleading in assemblies -> chimera
+
+We would like to stress that \emph{de novo} measures of assembly quality, such as ours, are critically needed by researchers attempting to assemble of yet unknown genomes.
+Results from GAGE~\cite{salzberg2011gage} and Assemblathon~\cite{earl2011assemblathon,bradnam2013assemblathon} have shown that the specific characteristics of the data being assembled has a great impact on the performance of the assembler.
+This problem is magnified in metagenomic assembly.
+By integrating our LAP framework in MetAMOS, we have allowed researchers to accurately and effortlessly to run and evaluate assemblies without any prior knowledge on evaluating assembly quality.
+
+Our original goal was to provide a global measure of how good a metagenomic assembly may be, not to detect assembly errors.
+We plan to extend our framework to give a more detailed breakdown of the LAP scores of segments assembled using the same subset of reads across different assemblies.
+The goal would be to take high-scoring assembled segments from individual assemblies to recreate an assembly with overall greater likelihood.
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command, the
+% \label for the overall figure must come after \caption.
+% \hfil must be used as a separator to get equal spacing.
+% The subfigure.sty package works much the same way, except \subfigure is
+% used instead of \subfloat.
+%
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals/conferences use top floats
+% exclusively. Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the \fnbelowfloat
+% command of the stfloats package.
+
+
+
+\section{Conclusion}
+In this paper we have described an extension to our \emph{de novo} assembly evaluation framework (LAP) for comparing metagenomic assemblies.
+We showed that the true metagenome and correct relative abundances maximizes our extended LAP score.
+Furthermore, we have integrated our framework into the metagenomic assembly pipeline MetAMOS, showing that any user is able to reproduce reference-based evaluations of metagenomic assemblies with relative ease.
+
+
+% conference papers do not normally have an appendix
+
+
+% use section* for acknowledgement
+\section*{Acknowledgment}
+
+The authors would like to thank the members of the Pop lab for valuable discussions on all aspects of our work.
+
+This work was supported in part by the NIH, grant R01-AI-100947 to MP,
+and the NSF, grant IIS-1117247 to MP.
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+\bibliographystyle{IEEEtran}
+\bibliography{mlap}
+
+
+% that's all folks
+\end{document}
+
+
