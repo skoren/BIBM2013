@@ -411,14 +411,16 @@ Mihai Pop\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}}
 \begin{abstract}
 %\boldmath
 The ever-decreasing costs of sequencing technology has led to a sharp increase in metagenomics projects over the past decade, allowing us to better understand the diversity and function of microbial communities found in the world around us.
+The first step in these analyses involves the use of tools called assemblers that piece together the DNA fragments into complete or near complete genome sequences. 
 Metagenomic assemblers inherit all the difficulties of traditional single genome assembly, but with the additional complexity of trying to resolve assemblies of closely related species with drastically varying abundances.
-Despite decades of research, assessing and comparing assembly quality still relies on the availability of independently determined standards, such as manually curated genome sequences.
-These standards are often not possible in metagenomic projects, where a large number of novel organisms and strains are discovered, thus we must rely on \emph{de novo} methods for assessing and comparing assembly qualities.
+Despite decades of research, assessing and comparing assembly quality still relies on the availability of independently determined standards, such as manually curated genomic sequences.
+These standards are often not possible in metagenomic projects, where a large portion of the organisms and strains are novel.
+Thus, we must rely on \emph{de novo} methods for assessing and comparing assembly qualities.
 Here we describe an extension to our \emph{de novo} LAP framework to evaluate metagenomic assemblies.
-We will show that by modifying our likelihood calculation to take into account abundances, we can accurately and efficiently evaluate metagenomic assemblies.
+We will show that by modifying our likelihood calculation to take into account abundances of assembled sequences, we can accurately and efficiently compare evaluate metagenomic assemblies.
 %We evaluate our extended framework on results generated from the Human Microbiome Project (HMP) and 
-We find that our extended LAP framework is able to reproduce results generated from the Human Microbiome Project (HMP) that closely match the reference-based evaluation metrics used in the study and outperforms other \emph{de novo} metrics traditionally used to measure assembly quality.
-Finally, we have integrated our LAP framework into the metagenomic assembly pipeline MetAMOS, allowing any user to reproduce reference-based quality evaluations of metagenomic assemblies with relative ease.
+We find that our extended LAP framework is able to reproduce results on data from the Human Microbiome Project (HMP) that closely match the reference-based evaluation metrics and outperforms other \emph{de novo} metrics traditionally used to measure assembly quality.
+Finally, we have integrated our LAP framework into the metagenomic assembly pipeline MetAMOS, allowing any user to reproduce reference-based quality assembly evaluations with relative ease.
 %Even without knowledge of the true reference sequences, our \emph{de novo} metric 
 %Here we introduce an extension to our LAP  \emph{de novo} probabilistic measure of assembly quality, which allows for an objective comparison of multiple assemblies generated from the same set of reads.
 %We define the quality of a sequence produced by an assembler, as the conditional probability of observing the sequenced reads from the assembled sequence.
@@ -453,12 +455,12 @@ The genome sequence of an organism is a vital resource for biologists trying to 
 Generating this sequence is not an easy task as modern sequencing technologies can only ``read'' small pieces of the genome.
 These sequences, known as \emph{reads}, have to be pieced together by tools called assemblers using a collection of different heuristics since in all but the simplest cases, assemblers cannot fully and accurately reconstruct the genome~\cite{myers1995,medvedev2007computability}.
 
-Practical implementations of assembly algorithms (such as ABySS~\cite{ABySS}, SOAPdenovo~\cite{SOAPdenovo}, Velvet~\cite{Velvet}, etc.) return just an approximation solution that is often fragmented and contains numerous errors.
+Practical implementations of assembly algorithms (such as ABySS~\cite{ABySS}, SOAPdenovo~\cite{SOAPdenovo}, Velvet~\cite{Velvet}, etc.) return just an approximate solution that is often fragmented and contains numerous errors.
 Ideally, further experiments would be performed manually to correct the hundreds to thousands of errors~\cite{salzberg2005misassemblies}, and fill in the gaps between the chunks of assembled sequences (called contigs)~\cite{nagarajan2010finishing}.
 However, the additional cost and effort necessary to finish a genome is only justifiable for a few high-priority organisms (typically model organisms).
 Thus, the majority of genomes sequences available today are considered to be in a ``draft'' state, with no clear indication of their respective quality, possibly impacting the conclusions and experiments done on their sequences.
 
-Despite the unresolved challenges of single genome assembly, the ever-decreasing costs of sequencing technology has led to a sharp increase in metagenomics projects over the past decade.
+Despite the unresolved challenges of single genome assembly, the decreasing costs of sequencing technology has led to a sharp increase in metagenomics projects over the past decade.
 % have been sharply on the rise over the past decade,
 These projects allow us to better understand the diversity and function of microbial communities found in the environment, including the ocean\cite{rusch2007sorcerer,wu2011stalking,yooseph2007sorcerer}, Arctic regions \cite{varin2012metagenomic}, other living organisms\cite{he2013comparative} and the human body\cite{gill2006metagenomic,peterson2009nih}.
 
@@ -471,7 +473,7 @@ bake-offs GAGE\cite{salzberg2011gage} and Assemblathons 1~\cite{earl2011assembla
 Different assemblers ``win'' depending on the specific downstream analyses, structure of the genome, and sequencing technology used.
 These competitions highlight the inherent difficulty of assessing assembly quality -- where do you set the line between increased contiguity and decreasing accuracy of the resulting sequence?
 Evaluating the trade-off between increased contiguity and errors is difficult even when there is a gold standard reference genome to compare to, which is not available in most practical assembly cases.
-Thus, we are forced to heavily rely on \emph{de novo} approaches based on sequence data alone ( including global ``sanity checks,'' such as gene density, which is expected to be high in bacterial genomes).
+Thus, we are forced to heavily rely on \emph{de novo} approaches based on sequence data alone (including global ``sanity checks,'' such as gene density, which is expected to be high in bacterial genomes).
 
 One objective \emph{de novo} metric that has been used to evaluate and compare assembly quality is based on the likelihood that the observed reads are generated from the given assembly, which can be accurately estimated by modeling the sequencing process.
 In the pioneering work of Gene Myers in the 1990's, Myers suggested that the correct assembly given the set of reads must be consistent with the data generation process.
@@ -486,7 +488,7 @@ Most of the previous \emph{de novo} and reference-based validation methods have 
 Currently, there are no clear reference-based metrics for evaluating metagenomic assemblies.
 Despite reference sequences being available for a small fraction of organisms found in metagenomic environments (CITATION NEEDED), it is not clear how to decipher errors from variants found within a population.
 In addition to chimeric contigs within a single organism, there are now potential chimeras that span multiple organisms.
-Furthermore, it is not clear how weigh errors occuring in more abundant organisms.
+Furthermore, it is not clear how to weigh errors occurring in more abundant organisms.
 Likelihood frameworks ALE ~\cite{clark2013ale}, CGAL~\cite{rahman2013cgal}, and LAP~\cite{LAP} rely on the assumption that the sequencing process is approximately uniform across the genome; however, the sequencing depth across genomes in metagenomic samples can vary greatly~\cite{carrigg2007dna,krsek1999comparison,morgan2010metagenomic,temperton2009bias,darling2004mauve}.
 
 %Assessing the quality of the sequence output by an assembler is of critical importance for downstream analyses and allows researchers to choose from a collection of genome assembler.
@@ -494,7 +496,7 @@ Likelihood frameworks ALE ~\cite{clark2013ale}, CGAL~\cite{rahman2013cgal}, and 
 In our paper, we describe an extension to our LAP framework to evaluate metagenomic assemblies.
 We will show that by modifying our likelihood calculation to take into account contig abundances, we can accurately and efficiently evaluate metagenomic assemblies.
 We evaluate our extended framework on results from the Human Microbiome Project (HMP).
-Finally, we show how our LAP framework can be used automatically by the metagenomic assembly pipeline MetAMOS, allowing any user to reproduce reference-based quality evaluations of metagenomic assemblies with relative ease.
+Finally, we show how our LAP framework can be used automatically by the metagenomic assembly pipeline MetAMOS\cite{treangen2013metamos}, allowing any user to reproduce reference-based quality evaluations of metagenomic assemblies with relative ease.
 The software implementing our approach is made available, open-source and free of charge, at: \url{http://assembly-eval.sourceforge.net/} and with the MetAMOS package: \url{https://github.com/treangen/MetAMOS}.
 
 %\hfill mds
@@ -504,7 +506,7 @@ The software implementing our approach is made available, open-source and free o
 \section{Methods}
 \subsection{Likelihood of an assembly}
 
-We measure the quality of an assembly as the probability that the observed reads, $R$, are generated from the given assembly, $A$: $\Pr[R|A]]$ \cite{LAP}.
+Our LAP framework measures the quality of an assembly as the probability that the observed reads, $R$, are generated from the given assembly, $A$: $\Pr[R|A]]$ \cite{LAP}.
 Assuming that the event of observing each read is independent, then the probability $\Pr[R|A]$ of the read set $R$ being produced from the assembly $A$, is the product of the individual read probabilities, $p_r$.  That is,
 \begin{equation}
   \label{probability_reads_given_assembly}
@@ -529,7 +531,7 @@ It is important to note that the true genome maximizes $\Pr[R|A]$ (see \cite{LAP
 
 %The metric used in accessing the assembly probability is the logarithm of the geometric mean of the read probabilities, referred to as the log average probability (LAP).
 Calculating $\Pr[R|A]$ can be expensive for dataset sizes commonly encountered in sequencing projects (tens to hundreds of millions of reads).
-Thus, we can approxmiate the likelihood of the assembly by using a random subset of the reads.
+Thus, we can approxmiate the likelihood of the assembly by using a random subset of the reads ($R^\prime$).
 To counteract the effect of sample size on the probability, we define the assembly quality as the geometric mean of the read probabilities:
 
 \begin{align}
@@ -545,12 +547,12 @@ The mean of the read probabilities over the sample is expected to be equal to th
 
 \subsection{Extending LAP to metagenomic assemblies}
 An important simplifying assumption of our framework is that the sequencing process is uniform in coverage.
-In metagenomics, however, the relative abundances of organisms are rarely uniform (CITATION).
-Metagenomic pipelines use assemblers that produce FASTA files with a single entry per contig despite its abundance or coverage.
+In metagenomics, however, the relative abundances of organisms are rarely uniform~\cite{carrigg2007dna,krsek1999comparison,morgan2010metagenomic,temperton2009bias,darling2004mauve}.
+Metagenomic pipelines use assemblers that produce FASTA files with a single entry per contig regardless of its abundance.
 This feature makes using the LAP incorrect out of the box.
-Later steps in the pipelines often deal with abundance estimation and phylogenetic classification.
-
-It is important to note while the abundances of each organism may vary dramatically, the sequencing process still produces a uniform coverage of the complete environment.
+%Later steps in the pipelines often deal with abundance estimation and phylogenetic classification.
+Therefore, we now assume that while the abundances of each organism may very dramatically, the sequencing process still has uniform coverage of the \emph{entire} environment.
+%It is important to note while the abundances of each organism may vary dramatically, the sequencing process still produces a uniform coverage of the complete environment.
 In other words, consider the case where we have three bacteria in an environment (1 of strain \emph{A}, 2 of strain \emph{B}).
 Now, lets assume we performed enough sequencing to produce a 1x coverage of each individual bacterium.
 An assembler would only output both bacteria strains, despite the difference in coverage.
@@ -568,7 +570,7 @@ An assembler would only output both bacteria strains, despite the difference in 
 
 We view the collection of individual genomes and their relative abundances as a single \emph{metagenome} where each genome is duplicated based on their abundance (Fig. \ref{fig:metagenome}).
 Thus, we now assume we have uniform coverage across the entire metagenome.
-This problem is similar to determining the optimal repeat count in single genome assembly, where a repetitive element can now include a genome (whose correct copy number maximizes our LAP score).
+This problem is similar to determining the optimal repeat count in single genome assembly, where a repetitive element can now include an entire genome (whose correct copy number maximizes our LAP score).
 
 In order to accurately calculate the LAP of a metagenomic assembly, in addition to the actual assemblies, we need the relative abundances.
 In the error-free model, we compute the probability of a read, $p_r$, given the assembled sequence and relative abundance as:
@@ -583,9 +585,9 @@ In the error-free model, we compute the probability of a read, $p_r$, given the 
   \hat{L} = \sum_{c \in \text{Contigs}}\text{abun}(c)*L_{c}
 \end{equation}
 
-where $n_{rc}$ is the number of times read $r$ occurs in contig $c$ and $\hat{L}$ is the adjusted total assembly length.  In the case where the abundance of each contig is 1, calculating $p_r$ is identical to the original LAP (single genome) formulation.  A similar modification can be done to account for sequencing errors outlined in \cite{LAP}.
+where $n_{rc}$ is the number of times read $r$ occurs in contig $c$ and $\hat{L}$ is the adjusted total assembly length.  In the case where the abundance of each contig is 1, calculating $p_r$ is identical to the original LAP (single genome) formulation.  A similar modification can be done to handle sequencing errors outlined in \cite{LAP}.
 
-Ghodsi et al. has shown we can approximate the probabilities using fast and memory efficient search alignment programs when it is impractical to calculate the exact probabilities for large read sets.
+Our prior work has shown we can approximate the probabilities using fast and memory efficient search alignment programs (e.g., Bowtie2~\cite{langmead2012fast}) when it is impractical to calculate the exact probabilities for large read sets.
 We can apply the metagenomics modification above to the alignment tool-based method:
 
 \begin{equation}
@@ -596,7 +598,7 @@ where $S_r$ is the set of alignments in the SAM file for the read $r$ and the pr
 
 In order to accurately evaluate the metagenomic assemblies using our LAP framework, the abundance of each contig is needed.
 However, commonly used metagenomic abundance tools are often targeted at taxonomic classification~\cite{segata2012metagenomic,brady2009phymm,liu2010metaphyler,huson2007megan}.
-One strategy to estimate contig abundances is to first perform taxonomic classification on the reads using the above tools and then align the contigs with the taxonomic database, transitively applying the taxonomic abundances to the contigs.
+One strategy to estimate contig abundances is to first perform taxonomic classification on the reads and then align the contigs with the taxonomic database, transitively applying the taxonomic abundances to the contigs.
 In lieu of taxonomic abundances, our LAP framework uses the average per basepair coverage of assembled contigs provided by MetAMOS.
 %We use modified version of Sailfish\cite{sailfish}, a tool to quickly calculate transcript abundances using RNA-seq data, to estimate contig abundances.
 %One of the underlying assumptions of Sailfish is that the coverage
@@ -609,7 +611,7 @@ The first step of the MetAMOS pipeline is to \verb!Preprocess! the reads, option
 Those reads are used by the next step \verb!Assemble!.
 Users specify the desired assembler using the \verb!-a! parameter of \verb!runPipeline!.
 We modified MetAMOS so users can now specify multiple assemblers (comma-separated) after the \verb!-a! parameter, and \verb!runPipeline! will run all assemblers and select the assembly yielding the highest LAP score for used in downstream analyses.
-The software implementing our approach is made available, open-source and free of charge, at: \url{http://assembly-eval.sourceforge.net/} and with the MetAMOS package: \url{https://github.com/treangen/MetAMOS}.
+%The software implementing our approach is made available, open-source and free of charge, at: \url{http://assembly-eval.sourceforge.net/} and with the MetAMOS package: \url{https://github.com/treangen/MetAMOS}.
 
 
 \begin{figure*}[tbhp!]
@@ -626,7 +628,7 @@ The software implementing our approach is made available, open-source and free o
 
 \section{Results}
 \subsection{Likelihood score maximized using correct abundances}
-A key property of our framework is that the correct abundances and assembly maximizes our LAP score.
+A key property of our framework is that the correct copy numbers (abundances) and assemblies maximizes our LAP score.
 To illustrate this property, we simulated two metagenomic communities and calculated the LAP of the reference genomes with a combination of abundances.
 The first simulated community consisted of \emph{Bacillus cereus} and \emph{Acinetobacter baumannii} at a ratio of 1:4.
 We generated 200bp reads at 20x coverage of the metagenome (20x of \emph{B. cereus} and 80x of \emph{A baumannii}).
@@ -653,10 +655,10 @@ The closer the LAP scores to the correct abundance ratio, the higher the LAP sco
 \subsection{Impact of errors on synthetic metagenomes}
 
 One of the often overlooked aspects of metagenomic assembly evaluation is how to weigh errors that occur in contigs with difference abundances.
-In single genome assembly, errors are often not unweighted under the assumption that a genome has roughly uniform coverage.
+In single genome assembly, errors are often not weighted since the genome has uniform coverage.
 %When organism abundances are uniform, the weight of an assembly error is also uniform.
-On the other hand, in metagenomic assemblies, the relative organism abundances can vary by orders of magnitudes.
-Thus, errors in the highly abundant organisms will have more of an impact on the LAP score than errors in organism of lower abundance.
+In metagenomic assemblies, on the other hand, the relative organism abundances can vary by orders of magnitudes.
+Thus, errors in highly abundant organisms will have more of an impact on the LAP score than errors in organism of lower abundance.
 To illustrate this, we simulated a small metagenomic community consisting of \emph{Escherichia coli} and \emph{Bacillus cereus} at a 5:1 ratio.
 We introduced an increasing number of common assembly errors (single-base substitutions, insertions, deletions, and inversions) into the two organisms assemblies and observed the resulting LAP score.
 
@@ -679,6 +681,7 @@ These communities were created using specific DNA sequences from organisms with 
 The mock Even community consisted of 100,000 16S copies per organism per aliquot, while the mock Staggered community consisted of 1,000 to 1,000,000 16S copies per organism per aliquot.
 Data used from the HMP mock communities are available at \url{http://www.ncbi.nlm.nih.gov/bioproject/48475}.
 We calculated the LAP score on assemblies produced by MetAMOS~\cite{treangen2013metamos}: SOAPdenovo~\cite{SOAPdenovo}, Metavelvet~\cite{namiki2012metavelvet}, Velvet~\cite{Velvet}, and Meta-IDBA~\cite{peng2011meta}.
+The reference-based metrics for the assemblies were taken from ~\cite{treangen2013metamos}.
 
 Generally, the \emph{de novo} LAP scores agree with the referenced-based contiguity values (Table \ref{tab:hmp}).
 In the mock Even dataset, SOAPdenovo has the greatest LAP score, the highest fraction of contigs that can align to the reference without error, total amount of sequence that can be aligned to a reference genome, while also having the lowest amount of misassemblies (including chimeric) and errors per Mbp.
@@ -691,7 +694,7 @@ The Meta-IDBA assembly contains approximately a tenth of the amount of contigs (
 
 Next we applied our framework on real data where we did not know the actual genomes comprising the sample (HMP tongue dorsum female sample, SRS077736) (Table \ref{tab:hmp}).
 Although we do not know for certain which organisms are present in the sample, the contigs were aligned to a reference database to collect potential genomes to compare against.
-The reference-based metrics were taken from ~\cite{treangen2013metamos}, and only consider chimeric errors due to the possibility of structural difference between an organism and its version in the reference database.
+The reference-based error metrics only consider chimeric errors due to the possibility of structural difference between an organism and its version in the reference database.
 We calculated the LAP of the assemblies using a single library consisting of 42,013,917 reads.
 The SOAPdenovo assembly had a far greater LAP score than the Meta-IDBA.
 The SOAPdenovo assembly was able to align more reads (88.14\% to 58.89\%) in relation to its genome size (46Mbp to 37Mbp) than the Meta-IDBA assembly.
@@ -710,7 +713,7 @@ Errors were found using DNADIFF and MUMmer~\cite{delcher2003using}.
 The newbler assembly produced one contig containing the complete \emph{C. ruddii} genome.
 The SOAPdenovo assembly produced a severely fragmented assembly with the most number of errors.
 The MetaVelvet and Velvet produced identical assemblies, containing 3 contigs of sizes 92Kbp, 65Kbp, and 1.7Kbp, but contained an additional 158bp compared to the \emph{C. ruddii} genome.
-Upon closer inspection, there were overlaps ranging from 38bp to 73bp between the contigs.
+Upon closer inspection, there were overlaps between the contigs ranging from 38bp to 73bp.
 This is not surprising given MetaVelvet's and Velvet's de bruijn graph-based approach could not resolve repetitive regions between the contigs.
 Newbler, on the other hand, contained only a single insertion error.
 The LAP score of the Newbler assembly was greater due to more reads being able to align across the regions that were broken apart in the MetaVelvet and Velvet assemblies.
@@ -749,7 +752,7 @@ These application specific assembly algorithms all attempt to optimize their for
 
 Our metagenomic LAP extension relies heavily on the idea that the sequencing process of the metagenome is roughly uniform (both in coverage and error profile), and that the reads are independently sampled from the genome.
 Biases exist in all steps of the sequencing process, from the extraction of DNA from organisms with different cell membranes/walls~\cite{carrigg2007dna,krsek1999comparison} to the sequencing protocol used~\cite{morgan2010metagenomic,temperton2009bias,darling2004mauve}.
-In the future, we would like to implement a more detailed model
+In the future, we would like to implement a more specific model that better captures the sequencing process.
 
 %De novo metric, more misleading in assemblies -> chimera
 
@@ -763,7 +766,8 @@ Other likelihood-based frameworks, such as ALE, use frequencies of certain seque
 We are able to apply similar modifications to our LAP framework to find regions of possible misassembly.
 Finally, we plan to extend our framework to give a more detailed breakdown of the LAP scores of segments assembled using the same subset of reads across different assemblies.
 The goal would be to take high-scoring assembled segments from individual assemblies to recreate an assembly with overall greater likelihood.
-This approach will be of great benefit to metagenomic assembly since assemblers are often designed with different constraints and goals in mind, e.g., low memory footprint, assembling high/low coverage organisms, or tolerating population polymorphisms.
+This approach will be of great benefit to the field of metagenomic assembly since assemblers are often designed with different constraints and goals in mind, e.g., low memory footprint, assembling high/low coverage organisms, or tolerating population polymorphisms.
+Providing a systematic way of combining assembler approaches using our LAP score will produce better assemblies for downstream analyses.
 
 
 \begin{figure}[tb!]
@@ -804,7 +808,7 @@ Tongue dorsum & Meta-IDBA & -21.368 & 25,698 & 88.70\% & 7 & \textbf{710} & \tex
 \end{table*}
 
 
-\begin{table}[t]
+\begin{table}[b]
 \caption{Self-tuning MetAMOS using \emph{C. ruddii} test dataset.}
 \label{tab:metamos_lap}
 \centering
